@@ -22,7 +22,7 @@ export const Number = styled.div`
 
 export const NameField = styled.label`
   font-size: 18px;
-  color: white;
+  color: #74a871;
 `;
 
 export const NameInput = styled.input`
@@ -42,7 +42,7 @@ export const NameInput = styled.input`
 
 export const NumberField = styled.label`
   font-size: 18px;
-  color: white;
+  color: #74a871;
 `;
 
 export const NumberInput = styled.input`
