@@ -6,8 +6,6 @@ import { Filter } from './Filter/Filter';
 import { Container, Title, Section, Total } from './App.styled';
 import initialContacts from './Data/contacts.json';
 
-
-
 export class App extends Component {
   state = {
     contacts: initialContacts,
@@ -42,19 +40,18 @@ export class App extends Component {
   };
 
   componentDidMount() {
-    console.log("App componentDidMount")
+    console.log('App componentDidMount');
     const contacts = localStorage.getItem('contacts');
     const parsedContacts = JSON.parse(contacts);
 
     if (parsedContacts) {
       this.setState({
-        contacts: parsedContacts
+        contacts: parsedContacts,
       });
     }
 
     console.log(parsedContacts);
     this.setState({ contacts: parsedContacts });
-
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -62,7 +59,7 @@ export class App extends Component {
     if (this.state.contacts !== prevState.contacts) {
       console.log('обновилось поле contacts');
 
-      localStorage.setItem("contacts",JSON.stringify(this.state.contacts))
+      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
     }
   }
 
