@@ -12,10 +12,27 @@ export class App extends Component {
     filter: '',
   };
 
+  componentDidMount() {
+    const localContacts = localStorage.getItem('contact');
+    if (localContacts) {
+      this.setState({ contacts: JSON.parse(localContacts) });
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.contacts !== this.state.contacts) {
+      localStorage.setItem('contact', JSON.stringify(this.state.contacts));
+    }
+  }
   addContact = ({ name, number }) => {
     const check = this.checkName(name);
     if (check.length <= 0) {
-      const newContact = { id: nanoid(), name, number };
+      const newContact = {
+        id: nanoid(),
+        name,
+        number,
+      };
+
       this.setState(prevState => ({
         contacts: [newContact, ...prevState.contacts],
       }));
@@ -38,30 +55,6 @@ export class App extends Component {
     const { value } = event.currentTarget;
     this.setState({ filter: value });
   };
-
-  componentDidMount() {
-    console.log('App componentDidMount');
-    const contacts = localStorage.getItem('contacts');
-    const parsedContacts = JSON.parse(contacts);
-
-    if (parsedContacts) {
-      this.setState({
-        contacts: parsedContacts,
-      });
-    }
-
-    console.log(parsedContacts);
-    this.setState({ contacts: parsedContacts });
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    console.log('App componentDidUpdate');
-    if (this.state.contacts !== prevState.contacts) {
-      console.log('обновилось поле contacts');
-
-      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
-    }
-  }
 
   render() {
     const { contacts, filter } = this.state;
