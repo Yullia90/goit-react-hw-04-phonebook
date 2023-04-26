@@ -7,6 +7,7 @@ import {
   Number,
   DeleteBtn,
 } from './ContactList.styled';
+
 export const ContactList = ({ contacts, onDeleteContact }) => {
   return (
     <Container>
